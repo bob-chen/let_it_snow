@@ -1,6 +1,8 @@
 #Let it Snow (Support multiple image).
 Fork from [peachananr/let_it_snow](https://github.com/peachananr/let_it_snow), and update to support draw multiple images.
 
+[![Let it Snow](https://raw.githubusercontent.com/bob-chen/let_it_snow/master/demo.jpg "Let it Snow")](https://github.com/bob-chen/let_it_snow)
+
 Create and Control a Festive Snow on Your Website using HTML5 Canvas
 Created by [Pete R.](http://www.thepetedesign.com), Founder of [BucketListly](http://www.bucketlistly.com)
 
@@ -23,7 +25,8 @@ $("canvas").let_it_snow({
   opacity: 0, // The opacity variation of the snow. You can choose a number in between 0.00 and 1.00 to set the base opacity and the plugin will randomly generate snows with slightly varied opacity.
   color: "#ffffff", // You can set the color of the snow here. This option only accepts HEX color code in full 6 digits. The default value is "#ffffff"
   windPower: 0, // You can set the wind power here. If you want the wind to blow left, set a positive number in this option., if you want the wind to blow right, set a negative number in this option. The default value is 0.
-  image: false // You can define a path to an image to be used instead of a default circle here. The default value is false.
+  images: false // You can define a path list to an image to be used instead of a default circle here. The default value is false.
+  // images: ["./snow.png", "./tree.png", "./sock.png"]
 });
 ````
 
