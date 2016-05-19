@@ -1,6 +1,8 @@
 /* ===========================================================
  * jquery-let_it_snow.js v1
  * ===========================================================
+ * Let it Snow (Support multiple image)
+ *
  * NOTE: This plugin is based on the work by Jason Brown (Loktar00)
  * https://github.com/loktar00/JQuery-Snowfall
  * http://www.thepetedesign.com
@@ -8,7 +10,8 @@
  * As the end of the year approaches, let's add 
  * some festive to your website!
  *
- * https://github.com/peachananr/let_it_snow
+ * https://github.com/bob-chen/let_it_snow 
+ * Forked from https://github.com/peachananr/let_it_snow
  *
  * ========================================================== */
 
@@ -22,7 +25,7 @@
     opacity: 0,
     color: "#ffffff",
     windPower: 0,
-    image: false
+    images: false
     };
 
   $.fn.let_it_snow = function(options){
@@ -111,14 +114,14 @@
             if (flake.x >= canvas.width || flake.x <= 0) {
                 reset(flake);
             }
-            if (settings.image == false) {
+            if (settings.images == false) {
               ctx.fillStyle = "rgba(" + rgb + "," + flake.opacity + ")"
               ctx.beginPath();
               ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
               ctx.fill();
             } else {
               
-              ctx.drawImage($("img#lis_flake").get(0), flake.x, flake.y, flake.size * 2, flake.size * 2);
+              ctx.drawImage(settings.imageItems[ i%settings.imageNum ], flake.x, flake.y, flake.size * 2, flake.size * 2 );
             }
             
         }
@@ -180,14 +183,24 @@
               opacity: opacity
           });
       }
-      
+
+      settings.imageItems = [];
+      var imageList = $("img.lis_flake");
+      for(i=0; i < imageList.length; i++) {
+        settings.imageItems.push(imageList.get(i));
+      }
+      settings.imageNum = imageList.length;
+
       snow();
     }
     
-    if (settings.image != false) {
-      $("<img src='"+settings.image+"' style='display: none' id='lis_flake'>").prependTo("body")
+    if (settings.images != false) {
+      for (var j = 0; j < settings.images.length; j++) {
+        $("<img src='"+settings.images[j]+"' style='display: none' class='lis_flake'>").prependTo(settings.wrapper)
+      }
+      
     }
-    
+
     init();
 
     $(window).resize(function() {
