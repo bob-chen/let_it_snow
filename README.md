@@ -1,13 +1,10 @@
-#Let it Snow by Pete R.
+#Let it Snow (Support multiple image).
+Fork from [peachananr/let_it_snow](https://github.com/peachananr/let_it_snow), and update to support draw multiple images.
+
 Create and Control a Festive Snow on Your Website using HTML5 Canvas
 Created by [Pete R.](http://www.thepetedesign.com), Founder of [BucketListly](http://www.bucketlistly.com)
 
 Note: This plugin is based on [Jason Brown](https://github.com/loktar00)'s solution [found here](http://stackoverflow.com/questions/13983764/creating-falling-snow-using-html-5-and-js)
-
-[![Let it Snow](http://www.thepetedesign.com/images/let_it_snow_image_2.png "Let it Snow")](http://www.thepetedesign.com/demos/let_it_snow_demo.html)
-
-## Demo
-[View demo](http://www.thepetedesign.com/demos/let_it_snow_demo.html)
 
 ## Compatibility
 Modern browsers such as Chrome, Firefox, and Safari on both desktop and smartphones have been tested. I have not tested this on IE.
