@@ -28,6 +28,26 @@
     images: false
     };
 
+  function isImgOk(img) {
+    // During the onload event, IE correctly identifies any images that
+    // weren’t downloaded as not complete. Others should too. Gecko-based
+    // browsers act like NS4 in that they report this incorrectly.
+    if (!img.complete) {
+      return false;
+    }
+
+    // However, they do have two very useful properties: naturalWidth and
+    // naturalHeight. These give the true size of the image. If it failed
+    // to load, either of these should be zero.
+
+    if (typeof img.naturalWidth !== "undefined" && img.naturalWidth === 0) {
+      return false;
+    }
+
+    // No other way of checking: assume it’s ok.
+    return true;
+  }
+
   $.fn.let_it_snow = function(options){
     var settings = $.extend({}, defaults, options),
         el = $(this),
@@ -120,8 +140,12 @@
               ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
               ctx.fill();
             } else {
-              
-              ctx.drawImage(settings.imageItems[ i%settings.imageNum ], flake.x, flake.y, flake.size * 2, flake.size * 2 );
+              var imgElement = settings.imageItems[ i%settings.imageNum ];
+
+              // Fix: fix INDEX_SIZE_ERR which caused by drawImage with unloaded img element
+              if (isImgOk(imgElement)) {
+                ctx.drawImage(settings.imageItems[ i%settings.imageNum ], flake.x, flake.y, flake.size * 2, flake.size * 2 );
+              }
             }
             
         }
